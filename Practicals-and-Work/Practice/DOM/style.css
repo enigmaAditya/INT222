@@ -1,0 +1,22 @@
+body{
+    background-color: pink;
+}
+h1{
+    color: blue;
+    background-color: yellow;
+}
+button{
+    background-color: violet;
+    color: brown;
+}
+.main-section{
+    background-color: lightblue;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+aside{
+    background-color: beige;
+    margin: 15px;
+    padding: 5px;
+}

@@ -1,0 +1,38 @@
+<!-- write a js program using addEventlistener(), promise, and setTimeout() to demonstrate the execution order of synchronous code, microtasks, macrotasks in the event loop when a button is clicked
+ 
+Explanation :
+ Synchronous code rums first
+ Promise callbacks are placed in the microtask queue and executed after synchronous code.
+ setTimeout() callbacxks go to the macrotask queue and execute after microtasks are completed.
+ This demonstrates how the Javascript Event Loop handles execution order.-->
+
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button type="click">Click me</button>
+    
+
+
+    <script>
+        document.querySelector("button").addEventListener("click",()=>{
+            console.log("clicked");
+            setTimeout(()=>{
+                console.log("setTimeout");
+            },0)
+            Promise.resolve().then(()=>{
+                console.log("promise");
+            })
+        })
+
+        console.log("first");
+
+    </script>
+</body>
+</html>
+
+

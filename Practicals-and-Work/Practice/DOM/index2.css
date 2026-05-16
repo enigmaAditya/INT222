@@ -1,0 +1,11 @@
+#box{
+    height:300px;
+    width: 300px;
+    background-color: aquamarine;
+    color: orange;
+    border: 1px solid black;
+    text-align: center;
+}
+ul{
+    list-style: none;
+}

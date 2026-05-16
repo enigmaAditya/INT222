@@ -1,0 +1,38 @@
+1. Document Object Model (DOM)
+- It is the way to represent the web page in a tree structure.
+- It is also the way to access and manipulate the web page.
+
+How it works:
+every html page is made up of nodes and these nodes are connected to each other in a tree structure
+every html gets converted into document object model when loaded into the browser
+
+
+2. Accessing HTML elements
+- We can access html elements using their id, class, or tag name.
+Example:
+<div id="main"></div>
+<div class="card"></div>
+<div></div>
+
+// access single element using id
+let firstDiv = document.getElementById("first")
+console.log(firstDiv)
+
+// return html collection not an array
+let cards = document.getElementsByClassName("card") // returns html collection of all the elements with the class name "card"
+console.log(cards)
+console.log(cards[0])
+
+document.getElementById("first") // selects using id
+let doc1 = document.getElementById("first")
+console.log(doc1) // returns the first element that matches the selector
+document.getElementById("first") // returns the element with the id "first"
+
+
+// access single element using querySelector
+let div = document.querySelector("main")  // returns the first element that matches the selector
+console.log(div)
+
+// access multiple elements using querySelectorAll
+let div2 = document.querySelectorAll("main") // returns all the elements that match the selector
+console.log(div2)

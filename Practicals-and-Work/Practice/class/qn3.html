@@ -1,0 +1,40 @@
+<!-- design a web application that dynamically adds buttons to a webpage. Implement event delegation so that all existing added buttons respond to click events using a single event listener attached
+ to the patrent container. Debug the application using Browser Developer tools by setting breakpoints and inspecting event.target -->
+
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+ </head>
+ <body>
+
+    <button id="addBtn">Add Button</button>
+
+    <div id="buttonContainer">
+        <button>Button 1</button>
+    </div>
+ 
+ <script>
+
+    document.addEventListener("DOMContentLoaded",()=>{
+        let addBtn = document.getElementById("addBtn")
+        let buttonContainer = document.getElementById("buttonContainer")
+        
+        
+        addBtn.addEventListener("click",()=>{
+            let newBtn = document.createElement("button")
+            newBtn.textContent = "Button " + (buttonContainer.children.length + 1)
+            buttonContainer.appendChild(newBtn)
+        })
+        buttonContainer.addEventListener("click",(e)=>{
+            if(e.target.tagName === "BUTTON"){
+                debugger
+                console.log("Button clicked: " + e.target.textContent)
+            }
+        })
+    })
+ </script>
+ </body>
+ </html>

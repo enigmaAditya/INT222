@@ -1,0 +1,2 @@
+node_modules,
+// develop a node.js script that : creates a file dynamically, appends new content, reads file content and displays it, delete the file upon user request

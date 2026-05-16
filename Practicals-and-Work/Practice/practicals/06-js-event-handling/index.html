@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Handling</title>
+    <style>
+        body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; padding-top: 50px; background: #f0f2f5; }
+        .card { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); width: 300px; }
+        input { width: 100%; padding: 10px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; }
+        button { width: 100%; padding: 10px; background: #007bff; color: white; border: none; border-radius: 6px; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        .display { margin-top: 20px; font-weight: bold; color: #333; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h3>Live Feedback</h3>
+        <input type="text" id="nameInput" placeholder="Type your name...">
+        <button id="greetBtn">Click to Greet</button>
+        <div class="display" id="output">Welcome!</div>
+    </div>
+
+    <script>
+        const input = document.getElementById('nameInput');
+        const btn = document.getElementById('greetBtn');
+        const output = document.getElementById('output');
+
+        // Input change event (Live update)
+        input.addEventListener('input', (e) => {
+            if(e.target.value) {
+                output.textContent = `Typing: ${e.target.value}`;
+            } else {
+                output.textContent = "Welcome!";
+            }
+        });
+
+        // Click event
+        btn.addEventListener('click', () => {
+            const name = input.value || "Stranger";
+            output.textContent = `Hello, ${name}! Hope you're having a great day.`;
+            output.style.color = '#28a745';
+        });
+    </script>
+</body>
+</html>
