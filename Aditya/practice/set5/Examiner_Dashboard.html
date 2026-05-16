@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set 5 Practical Dashboard</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --bg: #0f172a;
+            --card: #1e293b;
+            --text: #f8fafc;
+            --accent: #10b981;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 20px;
+        }
+        aside {
+            background: var(--card);
+            padding: 20px;
+            border-radius: 15px;
+            height: calc(100vh - 80px);
+            position: sticky;
+            top: 20px;
+            overflow-y: auto;
+        }
+        main {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background: var(--card);
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid #334155;
+            transition: transform 0.2s;
+        }
+        .card:hover { transform: translateY(-5px); }
+        h2 { color: var(--primary); margin-top: 0; font-size: 1.2rem; }
+        .input-group { margin-bottom: 10px; }
+        label { display: block; font-size: 0.8rem; margin-bottom: 4px; opacity: 0.8; }
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            border-radius: 6px;
+            border: 1px solid #475569;
+            background: #0f172a;
+            color: white;
+            box-sizing: border-box;
+        }
+        button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        button:hover { opacity: 0.9; }
+        .result-box {
+            margin-top: 15px;
+            padding: 10px;
+            background: #000;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 0.85rem;
+            color: var(--accent);
+            min-height: 40px;
+            word-break: break-all;
+        }
+        .tag {
+            font-size: 0.7rem;
+            background: var(--primary);
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+<aside>
+    <h1 style="color: var(--primary); font-size: 1.5rem;">Set 5 Practical Demo</h1>
+    <p style="font-size: 0.9rem; opacity: 0.7;">This dashboard connects to your local Node.js servers (Ports 6001-6010).</p>
+    <hr style="border: 0; border-top: 1px solid #334155; margin: 20px 0;">
+    <div id="status-panel">
+        <p><strong>Stored Token:</strong></p>
+        <div id="token-display" style="font-size: 0.7rem; opacity: 0.6; overflow-wrap: break-all;">None</div>
+    </div>
+</aside>
+
+<main>
+    <!-- Q1 -->
+    <div class="card">
+        <span class="tag">Q1: Student Login</span>
+        <h2>JWT & MongoDB</h2>
+        <div class="input-group">
+            <label>Username</label>
+            <input type="text" id="q1-user" value="aditya">
+        </div>
+        <div class="input-group">
+            <label>Password</label>
+            <input type="password" id="q1-pass" value="123">
+        </div>
+        <button onclick="q1Action('/register')">Register</button>
+        <button onclick="q1Action('/login')">Login</button>
+        <button style="background: #475569;" onclick="q1Profile()">View Profile</button>
+        <div class="result-box" id="q1-res">Result will show here...</div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="card">
+        <span class="tag">Q3: Employee Portal</span>
+        <h2>RBAC Logic</h2>
+        <div class="input-group">
+            <label>Role</label>
+            <input type="text" id="q3-role" value="admin">
+        </div>
+        <button onclick="q3Action()">Fetch Employees</button>
+        <div class="result-box" id="q3-res">Result...</div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="card">
+        <span class="tag">Q4: Notes API</span>
+        <h2>CRUD & Ownership</h2>
+        <div class="input-group">
+            <label>Note Title</label>
+            <input type="text" id="q4-title" value="Exam Secret">
+        </div>
+        <button onclick="q4Action()">Create Note (as user123)</button>
+        <div class="result-box" id="q4-res">Result...</div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="card">
+        <span class="tag">Q5: Feedback System</span>
+        <h2>LLM Summary</h2>
+        <textarea id="q5-text" placeholder="Enter long feedback..."></textarea>
+        <button onclick="q5Action()">Submit & Summarize</button>
+        <div class="result-box" id="q5-res">Result...</div>
+    </div>
+
+    <!-- Q9 -->
+    <div class="card">
+        <span class="tag">Q9: Movie Recs</span>
+        <h2>AI Integration</h2>
+        <input type="text" id="q9-movie" value="Inception">
+        <button onclick="q9Action()">Get AI Recommendations</button>
+        <div class="result-box" id="q9-res">Result...</div>
+    </div>
+
+    <!-- Q10 -->
+    <div class="card">
+        <span class="tag">Q10: Parcel Tracker</span>
+        <h2>PostgreSQL Logic</h2>
+        <input type="text" id="q10-id" value="105">
+        <button onclick="q10Action()">Track Parcel</button>
+        <div class="result-box" id="q10-res">Result...</div>
+    </div>
+</main>
+
+<script>
+    let savedToken = "";
+
+    async function q1Action(path) {
+        const username = document.getElementById('q1-user').value;
+        const password = document.getElementById('q1-pass').value;
+        const res = await fetch(`http://localhost:6001${path}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username, password })
+        });
+        const data = await res.json().catch(() => res.text());
+        
+        if (data.token) {
+            savedToken = data.token;
+            document.getElementById('token-display').innerText = savedToken;
+        }
+        document.getElementById('q1-res').innerText = JSON.stringify(data);
+    }
+
+    async function q1Profile() {
+        const res = await fetch(`http://localhost:6001/profile`, {
+            headers: { 'Authorization': savedToken }
+        });
+        const data = await res.text();
+        document.getElementById('q1-res').innerText = data;
+    }
+
+    async function q3Action() {
+        const role = document.getElementById('q3-role').value;
+        const res = await fetch(`http://localhost:6003/employees?role=${role}`);
+        const data = await res.json();
+        document.getElementById('q3-res').innerText = JSON.stringify(data);
+    }
+
+    async function q4Action() {
+        const title = document.getElementById('q4-title').value;
+        const res = await fetch(`http://localhost:6004/notes`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'userid': 'user123' },
+            body: JSON.stringify({ title, content: 'Demonstration content' })
+        });
+        const data = await res.text();
+        document.getElementById('q4-res').innerText = data;
+    }
+
+    async function q5Action() {
+        const text = document.getElementById('q5-text').value;
+        const res = await fetch(`http://localhost:6005/feedback`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ text })
+        });
+        const data = await res.json();
+        document.getElementById('q5-res').innerText = JSON.stringify(data);
+    }
+
+    async function q9Action() {
+        const movie = document.getElementById('q9-movie').value;
+        const res = await fetch(`http://localhost:6009/recommend`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ movie })
+        });
+        const data = await res.json();
+        document.getElementById('q9-res').innerText = JSON.stringify(data);
+    }
+
+    async function q10Action() {
+        const id = document.getElementById('q10-id').value;
+        const res = await fetch(`http://localhost:6010/parcel/${id}`);
+        const data = await res.json();
+        document.getElementById('q10-res').innerText = JSON.stringify(data);
+    }
+</script>
+
+</body>
+</html>

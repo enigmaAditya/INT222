@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set 2 Q7(1) - Font Hover</title>
+    <style>
+        body {
+            background: #111;
+            color: #eee;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            text-align: center;
+        }
+
+        #targetPara {
+            font-size: 1.5rem;
+            line-height: 1.6;
+            padding: 2rem;
+            border: 1px solid #333;
+            border-radius: 15px;
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        /* The change is handled by JS as per requirement, but we can set base styles */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Hover to Change Font</h1>
+        <p id="targetPara">
+            This is a demonstration paragraph. When you hover your mouse over this text, its font style (family, weight, or style) will change dynamically using JavaScript event listeners.
+        </p>
+    </div>
+
+    <script>
+        const para = document.getElementById('targetPara');
+
+        para.addEventListener('mouseover', () => {
+            para.style.fontFamily = "'Courier New', Courier, monospace";
+            para.style.fontStyle = "italic";
+            para.style.fontWeight = "bold";
+            para.style.color = "#00ff88";
+            para.style.borderColor = "#00ff88";
+        });
+
+        para.addEventListener('mouseout', () => {
+            para.style.fontFamily = "'Inter', sans-serif";
+            para.style.fontStyle = "normal";
+            para.style.fontWeight = "normal";
+            para.style.color = "#eee";
+            para.style.borderColor = "#333";
+        });
+    </script>
+</body>
+</html>

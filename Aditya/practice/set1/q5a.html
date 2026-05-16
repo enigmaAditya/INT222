@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q5(A) - Mouse Events Demo</title>
+    <style>
+        body {
+            background: #0a0a0a;
+            color: white;
+            font-family: 'Space Mono', monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #interactiveBox {
+            width: 300px;
+            height: 300px;
+            background: #333;
+            border: 4px dashed #666;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 20px;
+            transition: 0.3s;
+            font-size: 1.2rem;
+            padding: 20px;
+        }
+
+        .log {
+            margin-top: 20px;
+            background: #1a1a1a;
+            padding: 1rem;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 500px;
+            height: 150px;
+            overflow-y: auto;
+            border: 1px solid #333;
+        }
+
+        .event-entry {
+            margin-bottom: 5px;
+            border-bottom: 1px solid #222;
+            padding-bottom: 5px;
+        }
+
+        .highlight {
+            color: #00ff88;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="interactiveBox">Interact with me!</div>
+    <div class="log" id="eventLog"></div>
+
+    <script>
+        const box = document.getElementById('interactiveBox');
+        const log = document.getElementById('eventLog');
+
+        function addLog(msg) {
+            const div = document.createElement('div');
+            div.className = 'event-entry';
+            div.innerHTML = `<span class="highlight">[${new Date().toLocaleTimeString()}]</span> ${msg}`;
+            log.prepend(div);
+        }
+
+        // 1. Click
+        box.addEventListener('click', () => {
+            box.style.backgroundColor = '#4400aa';
+            addLog('Event: click triggered');
+        });
+
+        // 2. Double Click
+        box.addEventListener('dblclick', () => {
+            box.style.borderRadius = box.style.borderRadius === '50%' ? '20px' : '50%';
+            addLog('Event: dblclick triggered');
+        });
+
+        // 3. Mouse Over
+        box.addEventListener('mouseover', () => {
+            box.style.borderColor = '#00ff88';
+            box.innerText = 'Mouse is OVER';
+            addLog('Event: mouseover triggered');
+        });
+
+        // 4. Mouse Out
+        box.addEventListener('mouseout', () => {
+            box.style.borderColor = '#666';
+            box.innerText = 'Mouse is OUT';
+            addLog('Event: mouseout triggered');
+        });
+
+        // 5. Context Menu (Right Click)
+        box.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+            box.style.transform = 'rotate(15deg)';
+            setTimeout(() => box.style.transform = 'rotate(0deg)', 500);
+            addLog('Event: contextmenu triggered (Right Click)');
+        });
+    </script>
+</body>
+</html>

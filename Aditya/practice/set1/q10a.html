@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q10(A) - Focus Highlighting</title>
+    <style>
+        body {
+            background: #eef2ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .login-box {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            width: 350px;
+        }
+
+        h2 { text-align: center; color: #1e1b4b; margin-bottom: 2rem; }
+
+        .field { margin-bottom: 1.5rem; }
+
+        label { display: block; font-size: 0.9rem; color: #64748b; margin-bottom: 0.5rem; }
+
+        input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: 0.3s;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        /* 1. When the user clicks on any field, textbox is highlighted with blue color */
+        input:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
+            background: #f8faff;
+        }
+
+        button {
+            width: 100%;
+            padding: 0.9rem;
+            border: none;
+            border-radius: 10px;
+            background: #1e1b4b;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover { background: #312e81; }
+    </style>
+</head>
+<body>
+    <div class="login-box">
+        <h2>Member Login</h2>
+        <form id="loginForm">
+            <div class="field">
+                <label>Username</label>
+                <input type="text" id="username" placeholder="Enter username" required>
+            </div>
+            <div class="field">
+                <label>Password</label>
+                <input type="password" id="password" placeholder="Enter password" required>
+            </div>
+            <button type="submit">Log In</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            // 2. When submit button is clicked the user gets an alert message saying Welcome, <Username>
+            alert(`Welcome, ${username}`);
+        });
+    </script>
+</body>
+</html>

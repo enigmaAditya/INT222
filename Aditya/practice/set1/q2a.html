@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q2(A) - Phone & Password Validation</title>
+    <style>
+        :root {
+            --primary: #10b981;
+            --bg: #064e3b;
+            --glass: rgba(255, 255, 255, 0.05);
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: linear-gradient(135deg, #064e3b 0%, #022c22 100%);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: var(--glass);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--border);
+            padding: 3rem;
+            border-radius: 30px;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.4);
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            letter-spacing: -0.025em;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.6rem;
+            color: #a7f3d0;
+            font-size: 0.9rem;
+        }
+
+        input {
+            width: 100%;
+            padding: 1rem;
+            border-radius: 15px;
+            border: 1px solid var(--border);
+            background: rgba(0,0,0,0.3);
+            color: white;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s;
+            box-sizing: border-box;
+        }
+
+        input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.2);
+        }
+
+        button {
+            width: 100%;
+            padding: 1.1rem;
+            border-radius: 15px;
+            border: none;
+            background: var(--primary);
+            color: #022c22;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 1rem;
+        }
+
+        button:hover {
+            background: #34d399;
+            transform: scale(1.02);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Secure Login</h2>
+        <form id="phoneForm">
+            <div class="form-group">
+                <label>Phone Number</label>
+                <input type="text" id="phone" placeholder="Enter 10-digit number">
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" id="password" placeholder="Min 8 chars, 1 Upper, 1 Digit">
+            </div>
+            <button type="submit">Sign In</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('phoneForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const phone = document.getElementById('phone').value;
+            const pass = document.getElementById('password').value;
+            let errors = [];
+
+            // 1. Phone number must contain 10 digit only. No character should be allowed.
+            if (!/^\d{10}$/.test(phone)) {
+                errors.push("Phone number must contain exactly 10 digits and no other characters.");
+            }
+
+            // 2. Password must have atleast 8 characters and must contain one uppercase character and a digit.
+            if (pass.length < 8) {
+                errors.push("Password must have at least 8 characters.");
+            }
+            if (!/[A-Z]/.test(pass)) {
+                errors.push("Password must contain at least one uppercase character.");
+            }
+            if (!/\d/.test(pass)) {
+                errors.push("Password must contain at least one digit.");
+            }
+
+            if (errors.length > 0) {
+                alert(errors.join("\n"));
+            } else {
+                alert("Login Successful!");
+            }
+        });
+    </script>
+</body>
+</html>

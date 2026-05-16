@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set 2 Q9(2) - Event Handling</title>
+    <style>
+        body {
+            background: #fdf2f8;
+            font-family: 'Segoe UI', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .event-card {
+            background: white;
+            padding: 3rem;
+            border-radius: 25px;
+            box-shadow: 0 10px 40px rgba(219, 39, 119, 0.1);
+            text-align: center;
+            max-width: 400px;
+        }
+
+        h2 { color: #be185d; }
+
+        .btn-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 12px;
+            border: 2px solid #fbcfe8;
+            background: white;
+            color: #be185d;
+            font-weight: 600;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        button:hover {
+            background: #fdf2f8;
+            border-color: #f472b6;
+        }
+
+        #output {
+            margin-top: 25px;
+            padding: 10px;
+            border-radius: 8px;
+            background: #f9fafb;
+            min-height: 50px;
+            font-weight: 500;
+            color: #374151;
+        }
+    </style>
+</head>
+<body>
+    <div class="event-card">
+        <h2>Event Handling Demo</h2>
+        <p>Interaction demonstrates event flow.</p>
+        
+        <div class="btn-stack">
+            <button id="clickBtn">Click Event</button>
+            <button id="dblClickBtn">Double Click Event</button>
+            <input type="text" id="inputField" placeholder="Type something (Input event)">
+        </div>
+
+        <div id="output">Action will be logged here...</div>
+    </div>
+
+    <script>
+        const output = document.getElementById('output');
+        const clickBtn = document.getElementById('clickBtn');
+        const dblClickBtn = document.getElementById('dblClickBtn');
+        const inputField = document.getElementById('inputField');
+
+        // 1. Click Event
+        clickBtn.onclick = function() {
+            output.innerText = "Event: Click Triggered!";
+            output.style.color = "#2563eb";
+        };
+
+        // 2. Double Click Event (using addEventListener)
+        dblClickBtn.addEventListener('dblclick', () => {
+            output.innerText = "Event: Double Click Triggered!";
+            output.style.color = "#7c3aed";
+        });
+
+        // 3. Input Event
+        inputField.oninput = (e) => {
+            output.innerText = "Event: Input -> " + e.target.value;
+            output.style.color = "#059669";
+        };
+
+        // 4. Keyboard Event
+        inputField.onkeydown = (e) => {
+            if (e.key === "Enter") {
+                alert("You pressed Enter: " + inputField.value);
+            }
+        };
+    </script>
+</body>
+</html>

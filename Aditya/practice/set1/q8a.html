@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q8(A) - Hover Paragraphs</title>
+    <style>
+        body {
+            background: #0f172a;
+            color: #f8fafc;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            text-align: center;
+        }
+
+        p {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: 0.3s;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+
+        p:hover {
+            background: rgba(99, 102, 241, 0.2);
+            border-color: #6366f1;
+            transform: scale(1.02);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Hover to Reveal</h1>
+        <p class="hover-para" data-original="Paragraph 1: Initial state." data-hover="Wow! You revealed the secret of Paragraph 1.">Paragraph 1: Initial state.</p>
+        <p class="hover-para" data-original="Paragraph 2: Waiting for mouse..." data-hover="Paragraph 2 is now transformed!">Paragraph 2: Waiting for mouse...</p>
+        <p class="hover-para" data-original="Paragraph 3: Hover over me." data-hover="And just like that, Paragraph 3 changes!">Paragraph 3: Hover over me.</p>
+    </div>
+
+    <script>
+        const paragraphs = document.querySelectorAll('.hover-para');
+
+        paragraphs.forEach(p => {
+            p.addEventListener('mouseover', () => {
+                p.innerText = p.getAttribute('data-hover');
+            });
+
+            p.addEventListener('mouseout', () => {
+                p.innerText = p.getAttribute('data-original');
+            });
+        });
+    </script>
+</body>
+</html>

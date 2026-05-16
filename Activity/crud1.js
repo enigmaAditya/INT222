@@ -16,12 +16,16 @@ let productSchema = mongoose.Schema({
 })
 let Product = mongoose.model("products",productSchema)
 mongoose.connect("mongodb://localhost:27017/ecommerce")
-app.post("/add",async(req,res)=>{
-    await Product.insertOne(req.body)
-    res.send("Product added successfully")
-    // p1.save()
-    res.redirect("/")
-})
+app.post("/add", async(req, res) => {
+    await Product.create(req.body);
+    res.send(`
+        <script>
+            alert('Product added successfully!');
+            window.location.href = '/';
+        </script>
+    `);
+});
+
 app.get("/show",async(req,res)=>{
     let products = await Product.find()
     res.send(products)

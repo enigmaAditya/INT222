@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q4(A) - Image Hover & Task</title>
+    <style>
+        body {
+            background: #121212;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .img-container {
+            position: relative;
+            margin-bottom: 3rem;
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+        }
+
+        img {
+            width: 300px;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .img-container:hover {
+            transform: scale(1.5);
+            z-index: 10;
+        }
+
+        button {
+            padding: 1rem 3rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #fff;
+            background: linear-gradient(135deg, #ff0080, #7928ca);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 10px 20px rgba(121, 40, 202, 0.3);
+        }
+
+        button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(121, 40, 202, 0.5);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="img-container">
+        <img src="image.png" alt="Sample Image" id="hoverImg">
+    </div>
+
+    <button id="taskBtn">Click Me</button>
+
+    <script>
+        document.getElementById('taskBtn').addEventListener('click', () => {
+            alert("Task completed");
+        });
+    </script>
+</body>
+</html>

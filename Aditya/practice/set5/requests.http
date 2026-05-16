@@ -1,0 +1,160 @@
+### Set 5: REST API Testing File
+### Use with "REST Client" extension in VS Code
+
+@token = YOUR_TOKEN_HERE
+@adminToken = YOUR_ADMIN_TOKEN_HERE
+
+# ==========================================
+# Q1: Student Login (MongoDB + Middleware)
+# ==========================================
+
+### Register
+POST http://localhost:6001/register
+Content-Type: application/json
+
+{
+    "username": "student1",
+    "password": "password123"
+}
+
+### Login
+POST http://localhost:6001/login
+Content-Type: application/json
+
+{
+    "username": "student1",
+    "password": "password123"
+}
+
+### View Profile (Paste token from login above)
+GET http://localhost:6001/profile
+Authorization: {{token}}
+
+
+# ==========================================
+# Q2: File Compression (Upload/Download)
+# ==========================================
+
+### Upload text for compression
+POST http://localhost:6002/compress
+Content-Type: text/plain
+
+This is a long piece of text that I want to compress using the zlib module in Node.js.
+
+
+# ==========================================
+# Q3: Employee Portal (RBAC)
+# ==========================================
+
+### Admin View (All data)
+GET http://localhost:6003/employees?role=admin
+
+### User View (Own profile only)
+GET http://localhost:6003/employees?role=user&id=102
+
+
+# ==========================================
+# Q4: Notes API (CRUD + Ownership)
+# ==========================================
+
+### Create Note
+POST http://localhost:6004/notes
+Content-Type: application/json
+userid: user123
+
+{
+    "title": "My Secret Note",
+    "content": "This belongs to user123 only."
+}
+
+### Get My Notes
+GET http://localhost:6004/notes
+userid: user123
+
+
+# ==========================================
+# Q5: Feedback + LLM
+# ==========================================
+
+### Submit Feedback
+POST http://localhost:6005/feedback
+Content-Type: application/json
+
+{
+    "text": "I really enjoyed the training session, it was very helpful and informative."
+}
+
+
+# ==========================================
+# Q6: Session Login
+# ==========================================
+
+### Login (Sets Session)
+GET http://localhost:6006/login
+
+### Check Dashboard
+GET http://localhost:6006/dashboard
+
+
+# ==========================================
+# Q7: Product Management (JWT RBAC)
+# ==========================================
+
+### Login as Admin
+POST http://localhost:6007/login
+Content-Type: application/json
+
+{
+    "role": "admin"
+}
+
+### Add Product (Requires Admin Token)
+POST http://localhost:6007/products
+Content-Type: application/json
+Authorization: {{adminToken}}
+
+{
+    "name": "MacBook Pro M3",
+    "price": 2500
+}
+
+
+# ==========================================
+# Q8: Log Saver
+# ==========================================
+
+### Visit Home
+GET http://localhost:6008/
+
+### Visit About
+GET http://localhost:6008/about
+
+
+# ==========================================
+# Q9: Movie Recommendations
+# ==========================================
+
+### Get Recs
+POST http://localhost:6009/recommend
+Content-Type: application/json
+
+{
+    "movie": "John Wick"
+}
+
+
+# ==========================================
+# Q10: Parcel Tracking (PostgreSQL Logic)
+# ==========================================
+
+### Update Status
+POST http://localhost:6010/parcel/update
+Content-Type: application/json
+
+{
+    "id": "105",
+    "status": "In Transit"
+}
+
+### Track Parcel
+GET http://localhost:6010/parcel/105

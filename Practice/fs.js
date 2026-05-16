@@ -25,7 +25,8 @@ catch(err){
 }
 
 //with path.join:
-const filePath=path.join(__dirname, 'data', 'output.txt');
+const filePath=path.join(__dirname, 'data', 'output.txt'); // what are the parameters here ?
+
 fs.writeFile(filePath, 'Safe path!', 'utf-8', (err)=>{
     if(err){
         console.log("Error: ", err.message);
@@ -180,4 +181,4 @@ fs.readFile('users.json', 'utf-8', (err, data)=>{
 })
 
 //Import JSON File directly (ES Module):
-import data from './users.json' assert {type: 'json'};
+// import data from './users.json' assert {type: 'json'};

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q6(A) - Color Picker</title>
+    <style>
+        body {
+            transition: background-color 0.5s ease;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 2rem;
+        }
+
+        select {
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border-radius: 10px;
+            border: 2px solid #ddd;
+            cursor: pointer;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        select:focus {
+            border-color: #3498db;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Select Background Color</h1>
+        <select id="colorSelect">
+            <option value="#ffffff">Select a color</option>
+            <option value="#e74c3c">Alizarin Red</option>
+            <option value="#3498db">Peter River Blue</option>
+            <option value="#2ecc71">Emerald Green</option>
+            <option value="#f1c40f">Sunflower Yellow</option>
+            <option value="#9b59b6">Amethyst Purple</option>
+            <option value="#34495e">Wet Asphalt</option>
+        </select>
+    </div>
+
+    <script>
+        const select = document.getElementById('colorSelect');
+        
+        select.addEventListener('change', (e) => {
+            const color = e.target.value;
+            const text = e.target.options[e.target.selectedIndex].text;
+            
+            if (color !== "#ffffff") {
+                alert("You selected: " + text);
+                document.body.style.backgroundColor = color;
+            } else {
+                document.body.style.backgroundColor = "#ffffff";
+            }
+        });
+    </script>
+</body>
+</html>

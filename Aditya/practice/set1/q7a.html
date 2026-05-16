@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q7(A) - Product Calculator</title>
+    <style>
+        body {
+            background: #f8fafc;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        button {
+            padding: 1rem 2rem;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        button:hover {
+            background: #1d4ed8;
+        }
+        #result {
+            margin-top: 2rem;
+            font-size: 1.5rem;
+            color: #1e293b;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Product Calculator</h1>
+        <button onclick="calculateProduct()">Calculate Product</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function calculateProduct() {
+            let num1 = prompt("Enter the first number:");
+            let num2 = prompt("Enter the second number:");
+
+            if (num1 !== null && num2 !== null) {
+                let n1 = parseFloat(num1);
+                let n2 = parseFloat(num2);
+
+                if (!isNaN(n1) && !isNaN(n2)) {
+                    let product = n1 * n2;
+                    document.getElementById('result').innerText = `The product of ${n1} and ${n2} is: ${product}`;
+                    alert(`The product is: ${product}`);
+                } else {
+                    alert("Please enter valid numbers!");
+                }
+            }
+        }
+    </script>
+</body>
+</html>

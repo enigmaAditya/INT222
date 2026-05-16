@@ -5,7 +5,7 @@ import path from 'path'
 import mongoose from 'mongoose'
 import { fileURLToPath } from 'url'
 
-const port = 8000;
+const port = 8001;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
